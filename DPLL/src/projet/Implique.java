@@ -28,8 +28,11 @@ public class Implique extends Prop {
 
 	@Override
 	Prop clausifier() {
-		// TODO Auto-generated method stub
+		Not n = new Not(p1);
+		Or o = new Or(n,p2);
+		o.clausifier();
 		return null;
+		
 	}
 
 	@Override

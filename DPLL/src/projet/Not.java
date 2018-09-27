@@ -45,6 +45,13 @@ public class Not extends Prop {
 			
 		}
 		
+		else if (p1 instanceof Or) {
+			Not n1 = new Not(p1.getp1());
+			Not n2 = new Not(p1.getp2());
+			And a = new And(n1,n2);
+			return a.clausifier();
+		}
+		
 		else if (p1 instanceof Var) {
 			  affichage();
 			  Not n = new Not(p1.getProp());
@@ -53,13 +60,13 @@ public class Not extends Prop {
 		}
 		
 		else {
-			return null;
+			Not n = new Not(p1.getProp().clausifier());
+			return n;
 		}
 		
+		
 	}
-	
-
-	
+		
 	public Prop clausifier(And and) {
 		Not n1 =  new Not(and.getp1());
 		Not n2 =  new Not(and.getp2());

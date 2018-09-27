@@ -11,23 +11,35 @@ public class Main {
 		
 		Prop C = new Var("C");
 		
-		Prop Bot = new Bottom();
 		
-		Prop Top = new Top();
 		
-		Prop And1 = new And(A,B);
+		Prop a1 = new And(A,B);
 		
-		Prop not1 = new Not(And1);
+		Prop o1 = new Or(a1,C);
 		
-		Prop not2 = new Not(Bot);
+		Prop i1 = new Implique(C,o1);
 		
-		Prop not5 = new Not(Top);
+		i1.affichage();
+		System.out.println();
 		
-		not1.clausifier();
+		Prop d =  i1.clausifier();
+		
+		d.clausifier();
+		
+		
+		
+		
+		
+		
+		
+		
+		/* not1.clausifier();
 		
 		not2.clausifier();
 		
 		not5.clausifier();
+		
+		not3.clausifier(); */
 		
 		
 	

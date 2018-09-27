@@ -20,4 +20,22 @@ public class Top extends Prop {
 		
 	}
 
+	@Override
+	Prop getProp() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	Prop getp1() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	Prop getp2() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
