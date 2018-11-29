@@ -131,7 +131,7 @@ public class Or extends Prop {
 
 		else {
 			Or o1 = new Or(p1.clausifier(),p2.clausifier());
-			return o1.clausifier(); 
+			return o1; 
 		}
 			
 	}
