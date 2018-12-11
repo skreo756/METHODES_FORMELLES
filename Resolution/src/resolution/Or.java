@@ -1,10 +1,13 @@
 package resolution;
 
+import java.util.ArrayList;
 
 public class Or extends Prop {
 
 	protected Prop p1;
 	protected Prop p2;
+	
+//	ArrayList<Prop> ListeClause;
 	
 	public Or (Prop prop1 , Prop prop2) {
 		p1 = prop1;
@@ -26,6 +29,14 @@ public class Or extends Prop {
 		System.out.print( " v " );
 		p2.affichage();
 		System.out.print(")");
+	}
+	
+	public ArrayList<Prop> GetListClause() {
+		for (int i = 0 ; i < ListeClause.size() ; i++ ) {
+			ListeClause.get(i).affichage();
+			System.out.print("   ");
+		}
+		return ListeClause;
 	}
 	
 	public String toString() {
@@ -134,6 +145,13 @@ public class Or extends Prop {
 			return o1; 
 		}
 			
+	}
+	
+	public ArrayList<Prop> MakeClause() {
+		
+		ListeClause.add(this);
+		return ListeClause;
+		
 	}
 	
 	@Override

@@ -1,8 +1,17 @@
-package resolution;
+ package resolution;
 
 import java.util.ArrayList;
 
 public class Main {
+	
+	
+	public static void Resolve(ArrayList<Prop> ListClause) {
+		for (int i = 0 ; i < ListClause.size() ; i++ ) {
+			ListClause.get(i).affichage();
+			System.out.print("   ");
+		}
+		
+	}
 
 	public static void main(String[] args) {
 		
@@ -46,8 +55,7 @@ public class Main {
 		Prop or2 = new Or(propxy,propx);
 		
 		Prop or3 = new Or(or2,propxyz);
-		
-		Prop or4 = new Or(or3,propx);
+ 		
 		System.out.println();
 		or3.affichage();
 		System.out.println();		
@@ -55,13 +63,8 @@ public class Main {
 		System.out.println();
 		System.out.println();
 		
+
 		
-		/*
-		System.out.println();
-		impl.affichage();
-		System.out.println();
-		impl.clausifier().affichage();
-		*/
 		
 		Prop and1= new And(propxy,propx);
 		
@@ -92,15 +95,45 @@ public class Main {
 		System.out.println();
 		impl2.clausifier().affichage();
 		
+		System.out.println();
+		System.out.println();
+		System.out.println();
 		
 		
+		//ArrayList<Prop> ListeClause = new ArrayList<Prop>();
+		
+		//impl2.clausifier().MakeClause();
 		
 		
-		
+		Prop test = impl2.clausifier();
+		test.affichage();
+		test.MakeClause();
+		System.out.println();
+		test.GetListClause();
 		
 		System.out.println();
 		System.out.println();
 		System.out.println();
+		
+		
+		
+		Prop testOr = or3.clausifier(); 
+		testOr.affichage();
+		testOr.MakeClause();
+		System.out.println();
+		testOr.GetListClause();
+		
+		System.out.println();
+		System.out.println();
+		System.out.println();
+		
+		Resolve(testOr.GetListClause());
+		
+
+		
+		
+		
+		
 		
 		
 		

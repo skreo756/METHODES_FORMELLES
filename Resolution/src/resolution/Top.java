@@ -1,5 +1,7 @@
 package resolution;
 
+import java.util.ArrayList;
+
 public class Top extends Prop {
 	
 	
@@ -11,6 +13,10 @@ public class Top extends Prop {
 	void affichage() {
 		System.out.print( " ⊤ " );
 		
+	}
+	
+	public ArrayList<Prop> GetListClause() {
+		return ListeClause;
 	}
 
 	@Override
@@ -46,6 +52,12 @@ public class Top extends Prop {
 	@Override
 	Prop herbrandiser() {
 		return this;
+	}
+
+	@Override
+	ArrayList<Prop> MakeClause() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

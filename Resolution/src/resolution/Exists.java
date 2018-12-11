@@ -1,5 +1,7 @@
 package resolution;
 
+import java.util.ArrayList;
+
 public class Exists extends Prop {
 
 	protected Prop p1;
@@ -20,6 +22,10 @@ public class Exists extends Prop {
 	Prop clausifier() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	
+	public ArrayList<Prop> GetListClause() {
+		return ListeClause;
 	}
 
 	@Override
@@ -49,6 +55,12 @@ public class Exists extends Prop {
 	@Override
 	Prop herbrandiser() {
 		return p1.herbrandiser();
+	}
+
+	@Override
+	ArrayList<Prop> MakeClause() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

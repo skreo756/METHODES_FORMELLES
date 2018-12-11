@@ -1,9 +1,13 @@
 package resolution;
 
+import java.util.ArrayList;
+
 public class And extends Prop {
 	
 	protected Prop p1;
 	protected Prop p2;
+	
+//	ArrayList<Prop> ListeClause;
 	
 	public And (Prop prop1 , Prop prop2) {
 		p1 = prop1;
@@ -16,6 +20,10 @@ public class And extends Prop {
 	
 	public Prop getp2() {
 		return p2;
+	}
+	
+	public ArrayList<Prop> GetListClause() {	
+		return ListeClause;
 	}
 	
 
@@ -63,6 +71,46 @@ public class And extends Prop {
 		return this;		
 		}
 	}
+	
+	public ArrayList<Prop> MakeClause() {
+		
+		if (p1 instanceof Predicat) {				
+			ListeClause.add(p1);			
+		}
+		
+		if (p2 instanceof Predicat) {
+			ListeClause.add(p1);
+		}
+		
+		if (p1 instanceof Not) {
+			ListeClause.add(p1);
+		}
+		
+		if (p2 instanceof Not) {
+			ListeClause.add(p2);
+		}
+		
+		if (p1 instanceof And) {
+			 ListeClause.addAll(p1.MakeClause());
+		}
+		
+		if (p2 instanceof And) {
+			 ListeClause.addAll(p2.MakeClause());
+		}
+		
+		if (p1 instanceof Or) {
+			ListeClause.add(p1);
+		}
+		
+		if (p2 instanceof Or) {
+			ListeClause.add(p2);
+		}
+		
+		return ListeClause;		
+	}
+		
+	
+	
 
 	@Override
 	Prop getProp() {

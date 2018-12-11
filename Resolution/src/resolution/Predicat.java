@@ -28,6 +28,10 @@ public class Predicat extends Prop {
 	Prop clausifier() {
 		return this;
 	}
+	
+	public ArrayList<Prop> GetListClause() {
+		return ListeClause;
+	}
 
 	@Override
 	Prop getProp() {
@@ -55,6 +59,12 @@ public class Predicat extends Prop {
 	@Override
 	Prop herbrandiser() {
 		return this;
+	}
+
+	@Override
+	ArrayList<Prop> MakeClause() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 	

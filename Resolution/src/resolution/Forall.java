@@ -1,5 +1,7 @@
 package resolution;
 
+import java.util.ArrayList;
+
 public class Forall extends Prop {
 
 	protected Prop p1;
@@ -20,6 +22,10 @@ public class Forall extends Prop {
 	Prop clausifier() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	
+	public ArrayList<Prop> GetListClause() {
+		return ListeClause;
 	}
 
 	@Override
@@ -47,6 +53,12 @@ public class Forall extends Prop {
 
 	@Override
 	Prop herbrandiser() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	ArrayList<Prop> MakeClause() {
 		// TODO Auto-generated method stub
 		return null;
 	}

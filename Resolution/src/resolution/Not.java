@@ -1,5 +1,7 @@
 package resolution;
 
+import java.util.ArrayList;
+
 public class Not extends Prop {
 	
 	protected Prop p1;
@@ -19,6 +21,10 @@ public class Not extends Prop {
 		p1.affichage();
 		System.out.print(")");
 		
+	}
+	
+	public ArrayList<Prop> GetListClause() {
+		return ListeClause;
 	}
 	
 	 Prop clausifier() {
@@ -94,6 +100,12 @@ public class Not extends Prop {
 	Prop herbrandiser() {
 		Not n = new Not(p1.skolemizer());
 		return n;
+	}
+
+	@Override
+	ArrayList<Prop> MakeClause() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	

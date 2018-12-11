@@ -1,5 +1,7 @@
 package resolution;
 
+import java.util.ArrayList;
+
 public class Implique extends Prop {
 	
 	protected Prop p1;
@@ -24,6 +26,10 @@ public class Implique extends Prop {
 		System.out.print( " ⇒ " );
 		p2.affichage();
 		
+	}
+	
+	public ArrayList<Prop> GetListClause() {
+		return ListeClause;
 	}
 	
 	public String toString() {
@@ -54,6 +60,12 @@ public class Implique extends Prop {
 	Prop herbrandiser() {
 		Implique i = new Implique(p1.skolemizer(),p2.skolemizer());
 		return i;
+	}
+
+	@Override
+	ArrayList<Prop> MakeClause() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

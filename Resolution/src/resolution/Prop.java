@@ -18,7 +18,11 @@ public abstract class Prop {
 	
 	abstract Prop herbrandiser();
 	
-	ArrayList<Prop> ListeClause;
+	ArrayList<Prop> ListeClause = new ArrayList<Prop>();
+	abstract ArrayList<Prop> GetListClause();
+
+	 abstract ArrayList<Prop> MakeClause();
+
 		
 	
 

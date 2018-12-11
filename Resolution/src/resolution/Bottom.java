@@ -1,5 +1,7 @@
 package resolution;
 
+import java.util.ArrayList;
+
 public class Bottom extends Prop {
 	
 	
@@ -24,6 +26,10 @@ public Bottom () {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	public ArrayList<Prop> GetListClause() {
+		return ListeClause;
+	}
 
 	@Override
 	Prop getp1() {
@@ -45,6 +51,12 @@ public Bottom () {
 	@Override
 	Prop herbrandiser() {
 		return this;
+	}
+
+	@Override
+	ArrayList<Prop> MakeClause() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
