@@ -1,6 +1,7 @@
 package resolution;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Not extends Prop {
 	
@@ -23,7 +24,15 @@ public class Not extends Prop {
 		
 	}
 	
+	public List<Terme> getVarLibres() {
+		return p1.getVarLibres();
+	}
+	
 	public ArrayList<Prop> GetListClause() {
+		for (int i = 0 ; i < ListeClause.size() ; i++ ) {
+			ListeClause.get(i).affichage();
+			System.out.print("   ");
+		}
 		return ListeClause;
 	}
 	

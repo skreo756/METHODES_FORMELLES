@@ -16,7 +16,7 @@ public class Var extends Terme{
 
 	@Override
 	public String toString() {
-		return var;
+		return this.var;
 	}
 	
 	/*

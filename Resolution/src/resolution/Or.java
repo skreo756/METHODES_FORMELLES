@@ -1,6 +1,7 @@
 package resolution;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Or extends Prop {
 
@@ -42,6 +43,11 @@ public class Or extends Prop {
 	public String toString() {
 		String o = "("+p1.toString()+"v"+p2.toString()+")";
 		return o;
+	}
+	
+	public List<Terme> getVarLibres() {
+		List<Terme> l = Union.union(p1,p2);
+		return l;
 	}
 
 	@Override

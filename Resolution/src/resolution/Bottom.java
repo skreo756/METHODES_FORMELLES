@@ -1,6 +1,7 @@
 package resolution;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Bottom extends Prop {
 	
@@ -19,6 +20,11 @@ public Bottom () {
 	Prop clausifier() {
 		System.out.print( " ⊥ " );
 		return null;
+	}
+	
+public List<Terme> getVarLibres() {
+		
+		return new ArrayList<Terme>();
 	}
 
 	@Override

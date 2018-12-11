@@ -1,6 +1,7 @@
 package resolution;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Implique extends Prop {
 	
@@ -19,12 +20,19 @@ public class Implique extends Prop {
 	public Prop getp2() {
 		return p2;
 	}
+	
+	public List<Terme> getVarLibres() {
+		List<Terme> l = Union.union(p1,p2);
+		return l;
+	}
 
 	@Override
 	void affichage() {
+		System.out.print("(");
 		p1.affichage();
 		System.out.print( " ⇒ " );
 		p2.affichage();
+		System.out.print(")");
 		
 	}
 	
@@ -52,13 +60,13 @@ public class Implique extends Prop {
 
 	@Override
 	Prop skolemizer() {
-		Implique i = new Implique(p1.herbrandiser(),p2.herbrandiser());
+		Implique i = new Implique(p1.herbrandiser(),p2.skolemizer());
 		return i;
 	}
 
 	@Override
 	Prop herbrandiser() {
-		Implique i = new Implique(p1.skolemizer(),p2.skolemizer());
+		Implique i = new Implique(p1.skolemizer(),p2.herbrandiser());
 		return i;
 	}
 

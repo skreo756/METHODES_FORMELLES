@@ -1,6 +1,7 @@
 package resolution;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Equivalent extends Prop {
 	
@@ -27,6 +28,11 @@ public class Equivalent extends Prop {
 		p2.affichage();
 		
 		
+	}
+	
+	public List<Terme> getVarLibres() {
+		List<Terme> l = Union.union(p1,p2);
+		return l;
 	}
 	
 	public ArrayList<Prop> GetListClause() {

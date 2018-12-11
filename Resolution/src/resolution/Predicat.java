@@ -1,14 +1,15 @@
 package resolution;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Predicat extends Prop {
 	
 	String nom;
 	
-	ArrayList<Terme> args;
+	List<Terme> args;
 	
-	public Predicat(String n , ArrayList<Terme> a) {
+	public Predicat(String n , List<Terme> a) {
 		nom = n;
 		args = a;
 	}
@@ -28,6 +29,24 @@ public class Predicat extends Prop {
 	Prop clausifier() {
 		return this;
 	}
+	
+	public List<Terme> getVarLibres() {
+		List<Terme> l = new ArrayList<>();
+		for (Terme t : args) {
+			l.add(new Var(t.toString()));
+		}
+		return l;
+	}
+	
+	public List<Terme> getArgs() {
+		return args;
+	}
+
+	public void setArgs(List<Terme> args) {
+		this.args = args;
+	}
+	
+	
 	
 	public ArrayList<Prop> GetListClause() {
 		return ListeClause;

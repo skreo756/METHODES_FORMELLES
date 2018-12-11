@@ -1,6 +1,7 @@
 package resolution;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Top extends Prop {
 	
@@ -24,6 +25,10 @@ public class Top extends Prop {
 		System.out.print( " ⊤ " );
 		return null;
 		
+	}
+	
+	public List<Terme> getVarLibres() {
+		return new ArrayList<Terme>();
 	}
 
 	@Override

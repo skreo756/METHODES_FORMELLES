@@ -1,6 +1,7 @@
 package resolution;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class And extends Prop {
 	
@@ -22,8 +23,17 @@ public class And extends Prop {
 		return p2;
 	}
 	
-	public ArrayList<Prop> GetListClause() {	
+	public ArrayList<Prop> GetListClause() {
+		for (int i = 0 ; i < ListeClause.size() ; i++ ) {
+			ListeClause.get(i).affichage();
+			System.out.print("   ");
+		}
 		return ListeClause;
+	}
+	
+	public List<Terme> getVarLibres() {
+		List<Terme> l = Union.union(p1,p2);
+		return l;
 	}
 	
 
@@ -43,8 +53,6 @@ public class And extends Prop {
 	}
 	
 	
-	 
-
 	@Override
 	public Prop clausifier() {
 		
@@ -66,6 +74,16 @@ public class And extends Prop {
 			Bottom b = new Bottom();
 			return b;
 		} 
+		
+		else if (p1 instanceof Not) {
+			And a = new And (p1.clausifier(), p2);
+			return a;
+		}
+		
+		else if (p2 instanceof Not) {
+			And a = new And (p1, p2.clausifier());
+			return a;
+		}
 		
 		else {
 		return this;		

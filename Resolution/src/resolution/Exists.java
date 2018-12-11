@@ -1,11 +1,13 @@
 package resolution;
 
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 public class Exists extends Prop {
 
 	protected Prop p1;
-	String var;
+	protected String var;
 	
 	public Exists( String v , Prop p) {
 		p1 = p;
@@ -14,8 +16,29 @@ public class Exists extends Prop {
 	
 	@Override
 	void affichage() {
-		System.out.println("∃"+var+"("+p1+")");
+		// System.out.println("∃"+var+"("+p1+")");
 		
+		System.out.print("∃"+var+ "("); 
+		p1.affichage(); 
+		System.out.print(")") ;
+		
+	}
+	
+	public List<Terme> getVarLibres() {
+
+		List<Terme> l = p1.getVarLibres();
+
+		Iterator itr2 = l.iterator();
+
+		Terme t2;
+		while(itr2.hasNext()) {
+			t2 = (Terme) itr2.next();
+			if(t2.toString().equals(var)) {
+				itr2.remove();
+			}
+		}
+
+		return  l;
 	}
 
 	@Override
@@ -30,8 +53,7 @@ public class Exists extends Prop {
 
 	@Override
 	Prop getProp() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.p1;
 	}
 
 	@Override
@@ -48,8 +70,17 @@ public class Exists extends Prop {
 
 	@Override
 	Prop skolemizer() {
-		// TODO Auto-generated method stub
-		return null;
+		System.out.println();
+		p1.affichage();
+		System.out.println();
+	//	IlExiste p1 = (IlExiste) p;
+		String nomFonct = NameGenerator.generateFonctionName();
+		List<Terme> VL = this.getVarLibres(); 
+		System.out.println(VL);  // = fonction qui extrait les variables libres de pp
+		this.getProp().affichage();
+		System.out.println();
+		ReplaceTerme.replaceTerme(this.var, new AppFonction(nomFonct,VL), this.getProp());
+		return p1.skolemizer();
 	}
 
 	@Override

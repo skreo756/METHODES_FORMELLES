@@ -1,6 +1,7 @@
  package resolution;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Main {
 	
@@ -126,8 +127,80 @@ public class Main {
 		System.out.println();
 		System.out.println();
 		System.out.println();
+		System.out.println();
+		System.out.println();
+		System.out.println();
+
 		
-		Resolve(testOr.GetListClause());
+	//	Resolve(testOr.GetListClause());
+		
+		
+		List<Terme> l = new ArrayList<>();
+		Var t1 = new Var("x");
+		Var t2 = new Var("y");
+		Var t3 = new Var("z");
+		Var t4 = new Var("a");
+		l.add(t1);
+		l.add(t2);
+		l.add(t3);
+		Prop p1 = new Forall("x",new Exists("y",new Forall("z",new Predicat("P",l))));
+		p1.affichage();
+		System.out.println();
+		Prop p = p1.skolemizer();
+		p.affichage();
+		
+		System.out.println();
+		System.out.println();
+		System.out.println();
+		
+		List<Terme> l2 = new ArrayList<>();
+		l2.add(t1);
+		
+		List<Terme> l3 = new ArrayList<>();
+		l3.add(t4);
+		
+		
+		
+		Forall for1 = new Forall("x", new Predicat ("P", l2));	
+		Or o1 = new Or(for1, new Predicat ("Q", l2));
+		Or o2 = new Or(new Predicat ("P" , l3), new Predicat ("Q" , l3));		
+		Implique i1 = new Implique(o1, o2);
+		Not n1 = new Not(i1);
+		
+		n1.affichage();
+		Prop I = n1.skolemizer();
+		I.affichage();
+		System.out.println();
+		Prop II = I.clausifier();
+		II.affichage();
+		
+		System.out.println();
+		System.out.println("//////");
+		System.out.println();
+		
+		II.MakeClause();
+		II.GetListClause();
+		
+		System.out.println();
+		System.out.println("//////");
+		System.out.println();
+		
+		
+		
+		
+		System.out.println();
+		System.out.println("//////");
+		System.out.println();
+		
+		ArrayList<Prop> III = II.MakeClause();
+		for(Prop p8 : III){
+			p8.affichage();
+			System.out.println();
+		}
+		
+		
+		
+		
 		
 
 		

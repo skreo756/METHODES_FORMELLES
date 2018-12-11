@@ -1,6 +1,8 @@
 package resolution;
 
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 public class Forall extends Prop {
 
@@ -14,8 +16,25 @@ public class Forall extends Prop {
 	
 	@Override
 	void affichage() {
-		System.out.println("∀"+var+"("+p1+")");
+		System.out.print("∀"+var+ "("); 
+		p1.affichage(); 
+		System.out.print(")") ;
 		
+	}
+	
+	public List<Terme> getVarLibres() {
+		List<Terme> l = p1.getVarLibres();
+
+		Iterator itr = l.iterator();
+		Terme t;
+		while(itr.hasNext()) {
+			t = (Terme) itr.next();
+			if(t.toString().equals(var)) {
+				itr.remove();
+			}
+		}
+
+		return  l;
 	}
 
 	@Override
@@ -30,8 +49,7 @@ public class Forall extends Prop {
 
 	@Override
 	Prop getProp() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.p1;
 	}
 
 	@Override
@@ -48,13 +66,20 @@ public class Forall extends Prop {
 
 	@Override
 	Prop skolemizer() {
+		p1.affichage();
+		System.out.println();
 		return p1.skolemizer();
+		
 	}
 
 	@Override
 	Prop herbrandiser() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		String nomFonct = NameGenerator.generateFonctionName();
+		List<Terme> VL = this.getVarLibres(); // = fonction qui extrait les variables libres de pp
+		
+		ReplaceTerme.replaceTerme(this.var, new AppFonction(nomFonct,VL), this.getProp());
+		return this.p1.skolemizer();
 	}
 
 	@Override
