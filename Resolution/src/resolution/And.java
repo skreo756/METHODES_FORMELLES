@@ -56,6 +56,7 @@ public class And extends Prop {
 	@Override
 	public Prop clausifier() {
 		
+		
 		if (p1 instanceof Top) {
 			return p2.clausifier();
 			
@@ -92,6 +93,8 @@ public class And extends Prop {
 	
 	public ArrayList<Prop> MakeClause() {
 		
+		
+		// On crée ici un tableau de de Propositions 
 		if (p1 instanceof Predicat) {				
 			ListeClause.add(p1);			
 		}

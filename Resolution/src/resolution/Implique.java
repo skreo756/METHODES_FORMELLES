@@ -47,6 +47,8 @@ public class Implique extends Prop {
 
 	@Override
 	Prop clausifier() {
+		
+		//A -> B ≡ ¬(A) v B 
 		Not n = new Not(p1);
 		Or o = new Or(n,p2);
 		return o.clausifier();

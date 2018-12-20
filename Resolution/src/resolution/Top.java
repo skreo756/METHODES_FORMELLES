@@ -22,8 +22,7 @@ public class Top extends Prop {
 
 	@Override
 	Prop clausifier() {
-		System.out.print( " ⊤ " );
-		return null;
+		return this;
 		
 	}
 	

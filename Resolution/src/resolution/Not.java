@@ -37,21 +37,28 @@ public class Not extends Prop {
 	}
 	
 	 Prop clausifier() {
+		 
+		 // Cas d'une double négation ¬¬(A) ≡ A
 		if (p1 instanceof Not ) {
 			Prop n = p1.clausifier();
 			return n;		
 		}
+		
+		// Cas du Bottim ¬(⊥) ≡  ⊤
 		else if (p1 instanceof Bottom) {
 			Prop t = new Top();
 			return t.clausifier();
 			
 		}
 		
+		// Cas du Top ¬(⊤) ≡  ⊥
 		else if (p1 instanceof Top) {
 			Prop b = new Bottom();
 			return b.clausifier();
 		}
 		
+		
+		// ¬( A ∧  B) ≡ ¬A v ¬B
 		else if (p1 instanceof And) {
 			Not n1 = new Not(p1.getp1());
 			Not n2 = new Not(p1.getp2());
@@ -60,6 +67,7 @@ public class Not extends Prop {
 			
 		}
 		
+		// ¬( A v  B) ≡ ¬A ∧ ¬B
 		else if (p1 instanceof Or) {
 			Not n1 = new Not(p1.getp1());
 			Not n2 = new Not(p1.getp2());
@@ -72,11 +80,13 @@ public class Not extends Prop {
 			  
 		}
 		
+		// ¬(A -> B) ≡ A ∧  ¬(B)
 		else if (p1 instanceof Implique) {
 			Not n = new Not(p1.getp2());
 			And a = new And(p1.getp1(),n);
 			return a.clausifier();
 		}
+		
 		
 		else {
 			Not n = new Not(p1.getProp().clausifier());

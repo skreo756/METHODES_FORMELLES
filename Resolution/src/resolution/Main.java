@@ -6,26 +6,22 @@ import java.util.List;
 public class Main {
 	
 	
-	public static void Resolve(ArrayList<Prop> ListClause) {
-		for (int i = 0 ; i < ListClause.size() ; i++ ) {
-			ListClause.get(i).affichage();
-			System.out.print("   ");
-		}
-		
-	}
+
 
 	public static void main(String[] args) {
 		
 		
 	
 		
-		
+		// On crée les variables x, y et z
 		Terme x = new Var("x");
 		
 		Terme y = new Var("y");
 		
 		Terme z = new Var("z");
 		
+		
+		// On crée l'arrayList de Terme pxyz qui contient x y z
 		ArrayList<Terme> pxyz = new ArrayList<Terme>();
 		
 		pxyz.add(x);
@@ -34,105 +30,92 @@ public class Main {
 		
 		ArrayList<Terme> px = new ArrayList<Terme>();
 		
+		
 		px.add(x);
 		
+		//On crée la Proposition P(x)
 		Prop propx = new Predicat("P",px);
 		
 		
-		
+		// On crée la Proposition P(x,y,z)
 		Prop propxyz = new Predicat("P",pxyz);
-		
-
-		
+				
 		ArrayList<Terme> pxy = new ArrayList<Terme>();
 		
 		pxy.add(x);
 		pxy.add(y);
 		
+		//On crée la proposition P(x,y)
 		Prop propxy  = new Predicat("P",pxy);
 		
 		System.out.println();
 
+		
+		// P(x,y) v P(x)
 		Prop or2 = new Or(propxy,propx);
 		
+		// P(x,y,z) v (P(x,y) v P(x))
 		Prop or3 = new Or(or2,propxyz);
  		
+		// On affiche la Proposition puis la proposition clausifiée
 		System.out.println();
 		or3.affichage();
 		System.out.println();		
 		or3.clausifier().affichage();
 		System.out.println();
 		System.out.println();
+		System.out.println();
 		
 
 		
-		
+		// P(x,y) ∧  P(x)
 		Prop and1= new And(propxy,propx);
 		
+		// (P(x,y) ∧  P(x)) v P(x,y,z)
 		Prop or1 = new Or(and1,propxyz);
 		
-		System.out.println();
-		or1.affichage();
-		System.out.println();
 		
-		or1.clausifier().affichage();
-		
+		// (((P(x,y) ∧ P(x)) v P(x,y,z)) ⇒ ((P(x,y) v P(x)) v P(x,y,z)))
+		Prop impl = new Implique(or1,or3);
 		System.out.println();
-		System.out.println();
-		Prop impl = new Implique(or2,or3);
-		System.out.println();
+		// On affiche la Proposition
 		impl.affichage();
 		System.out.println();
+		// On la clausifie et on affiche le résultat
 		impl.clausifier().affichage();
 		
 		
 		System.out.println();
 		System.out.println();
 		Prop impl1 = new Implique(propx,propxy);
+		
+		// (P(x) -> P(x,y)) -> P(x,y,z)
 		Prop impl2 = new Implique(impl1,propxyz);
 		
+		
 		System.out.println();
+		// On affiche
 		impl2.affichage();
 		System.out.println();
+		// On clausifie et on affiche le rsultat
 		impl2.clausifier().affichage();
 		
 		System.out.println();
 		System.out.println();
 		System.out.println();
 		
-		
-		//ArrayList<Prop> ListeClause = new ArrayList<Prop>();
-		
-		//impl2.clausifier().MakeClause();
-		
-		
 		Prop test = impl2.clausifier();
-		test.affichage();
 		test.MakeClause();
 		System.out.println();
+		// On affiche la liste des clauses
 		test.GetListClause();
 		
 		System.out.println();
 		System.out.println();
 		System.out.println();
-		
-		
-		
-		Prop testOr = or3.clausifier(); 
-		testOr.affichage();
-		testOr.MakeClause();
-		System.out.println();
-		testOr.GetListClause();
-		
-		System.out.println();
-		System.out.println();
-		System.out.println();
-		System.out.println();
-		System.out.println();
-		System.out.println();
+
 
 		
-	//	Resolve(testOr.GetListClause());
 		
 		
 		List<Terme> l = new ArrayList<>();
@@ -143,11 +126,13 @@ public class Main {
 		l.add(t1);
 		l.add(t2);
 		l.add(t3);
+		// On crée la Proposition ∀x(∃y(∀z(P(x,y,z))))
 		Prop p1 = new Forall("x",new Exists("y",new Forall("z",new Predicat("P",l))));
+		// On l'affiche
 		p1.affichage();
 		System.out.println();
-		Prop p = p1.skolemizer();
-		p.affichage();
+		// On skolemize la fonction et on affiche le résultat : P(x,f1(x),z)
+		p1.skolemizer();
 		
 		System.out.println();
 		System.out.println();
@@ -167,51 +152,21 @@ public class Main {
 		Implique i1 = new Implique(o1, o2);
 		Not n1 = new Not(i1);
 		
+		// On crée la proposition ¬(((∀x(P(x)) v Q(x)) ⇒ (P(a) v Q(a))))P(x)
+		// On affiche la proposition
 		n1.affichage();
+		// On skolemize la fonction
 		Prop I = n1.skolemizer();
-		I.affichage();
+		
 		System.out.println();
+		// On la clausifie puis on affiche la proposition clausifée et la liste des clauses.
 		Prop II = I.clausifier();
-		II.affichage();
-		
-		System.out.println();
-		System.out.println("//////");
-		System.out.println();
-		
+		II.affichage();		
 		II.MakeClause();
+		System.out.println();
 		II.GetListClause();
 		
-		System.out.println();
-		System.out.println("//////");
-		System.out.println();
-		
-		
-		
-		
-		System.out.println();
-		System.out.println("//////");
-		System.out.println();
-		
-		ArrayList<Prop> III = II.MakeClause();
-		for(Prop p8 : III){
-			p8.affichage();
-			System.out.println();
-		}
-		
-		
-		
-		
-		
 
-		
-		
-		
-		
-		
-		
-		
-	 
-		
 		
 
 	}

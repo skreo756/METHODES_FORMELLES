@@ -41,8 +41,13 @@ public class Equivalent extends Prop {
 
 	@Override
 	Prop clausifier() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		// A <-> B ≡ A -> B ET B-> A
+		Implique i1 = new Implique (p1,p2);
+		Implique i2 = new Implique (p2,p1);	
+		
+		And a = new And (i1,i2);
+		return a.clausifier();
 	}
 
 	@Override

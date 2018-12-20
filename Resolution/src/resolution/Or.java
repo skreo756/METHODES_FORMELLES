@@ -53,24 +53,29 @@ public class Or extends Prop {
 	@Override
 	Prop clausifier() {
 		
+		
+		// A v ⊤  ≡   ⊤ 
 		if (p2 instanceof Top) {
 			Top t = new Top();
 			return t;		
 		}
-		
+		// A v ⊤  ≡   ⊤
 		else if (p1 instanceof Top) {
 			Top t = new Top();
 			return t;		
 		}
 		
+		// A v ⊥  ≡   ⊥
 		else if (p1 instanceof Bottom) {
 			return p2.clausifier();
 		}
-		
+		// A v ⊥  ≡   ⊥
 		else if (p2 instanceof Bottom) {
 			return p1.clausifier();
 		}
 		
+		
+		// (A ∧  B) v C ≡ (A v C) ∧  (B v C)
 		else if (p1 instanceof And) {
 			Or o1 = new Or (p1.getp1(),p2);
 			Or o2 = new Or (p1.getp2(),p2);
@@ -79,6 +84,7 @@ public class Or extends Prop {
 			return a1;
 		}
 		
+		// (A ∧  B) v C ≡ (A v C) ∧  (B v C)
 		else if (p2 instanceof And) {
 			Or o1 = new Or (p1,p2.getp1());
 			Or o2 = new Or (p1,p2.getp2());
@@ -87,6 +93,7 @@ public class Or extends Prop {
 			return a1;
 		}
 		
+		// ((A V B) V C) ≡ (A v B v C)
 		else if (p1 instanceof Or) {
 			if ((p1.getp1() instanceof Predicat && p1.getp2() instanceof Predicat)
 					||(p1.getp1() instanceof Not && p1.getp1().getProp() instanceof Predicat && p1.getp2() instanceof Not && p1.getp2().getProp() instanceof Predicat)
@@ -101,6 +108,7 @@ public class Or extends Prop {
 			}
 		}
 		
+		// ((A V B) V C) ≡ (A v B v C)
 		else if (p2 instanceof Or) {
 			if ((p2.getp1() instanceof Predicat && p2.getp2() instanceof Predicat)
 					||(p2.getp1() instanceof Not && p2.getp1().getProp() instanceof Predicat && p2.getp2() instanceof Not && p2.getp2().getProp() instanceof Predicat)
@@ -115,6 +123,7 @@ public class Or extends Prop {
 			
 		}
 		
+		// Dans le cas d'un prédicat ou d'un not pas besoin de clausification
 		else if ((p1 instanceof Predicat && p2 instanceof Predicat) 
 				|| (p1 instanceof Not && p1.getProp() instanceof Predicat && p2 instanceof Not && p2.getProp() instanceof Predicat) 
 				|| (p1 instanceof Not && p1.getProp() instanceof Predicat && p2 instanceof Predicat)

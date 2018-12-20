@@ -3,38 +3,24 @@ package resolution;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Bottom extends Prop {
-	
-	
-public Bottom () {
-		
-	}
+public class Empty extends Prop {
 
 	@Override
 	void affichage() {
-		System.out.print( " ⊥ " );
+		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	Prop clausifier() {
-		System.out.print( " ⊥ " );
-		return this;
-	}
-	
-public List<Terme> getVarLibres() {
-		
-		return new ArrayList<Terme>();
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override
 	Prop getProp() {
 		// TODO Auto-generated method stub
 		return null;
-	}
-	
-	public ArrayList<Prop> GetListClause() {
-		return ListeClause;
 	}
 
 	@Override
@@ -51,12 +37,26 @@ public List<Terme> getVarLibres() {
 
 	@Override
 	Prop skolemizer() {
-		return this;
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override
 	Prop herbrandiser() {
-		return this;
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	ArrayList<Prop> GetListClause() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Terme> getVarLibres() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override
